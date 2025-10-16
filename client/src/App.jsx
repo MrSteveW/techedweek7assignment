@@ -5,7 +5,6 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import Posts from "./pages/Posts";
-import Houseplant from "./pages/Houseplant";
 import UseEffectTimer from "./pages/UseEffectTimer";
 
 function App() {
@@ -15,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/plants" element={<Posts />} />
+        <Route path="/posts" element={<Posts />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

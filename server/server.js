@@ -32,19 +32,47 @@ app.get("/posts", async (req, res) => {
 // POST NEW POST
 app.post("/posts", async (req, res) => {
   try {
-    console.log("req.body:", req.body); // Add this line to debug
-    console.log("Content-Type:", req.headers["content-type"]); // Add this line too
+    const { username, title, content, reaction, tags } = req.body;
 
-    const body = req.body;
-    const username = req.body.username;
-    const title = req.body.title;
-    const content = req.body.content;
-    const reaction = req.body.reaction;
-
-    const result = await db.query(
+    // Save most data to posts
+    const postResult = await db.query(
       "INSERT INTO posts (username, title, content, reaction) VALUES ($1, $2, $3, $4) RETURNING *",
       [username, title, content, reaction]
     );
+
+    const newPost = postResult.rows[0];
+    const postId = newPost.id;
+
+    // save tags
+    if (tags && tags.length > 0) {
+      // Split tags string into array if it's a string like "equipment swimming"
+      const tagArray = typeof tags === "string" ? tags.split(" ") : tags;
+
+      for (const tagName of tagArray) {
+        let tagResult = await db.query("SELECT id FROM tags WHERE name = $1", [
+          tagName.trim(),
+        ]);
+
+        let tagId;
+        if (tagResult.rows.length === 0) {
+          // Tag doesn't exist, create it
+          const newTagResult = await db.query(
+            "INSERT INTO tags (name) VALUES ($1) RETURNING id",
+            [tagName.trim()]
+          );
+          tagId = newTagResult.rows[0].id;
+        } else {
+          // Tag exists, use its ID
+          tagId = tagResult.rows[0].id;
+        }
+
+        // Insert into junction table
+        await db.query(
+          "INSERT INTO posts_tags (post_id, tag_id) VALUES ($1, $2)",
+          [postId, tagId]
+        );
+      }
+    }
 
     res.status(201).json({
       status: "Posted successfully",
