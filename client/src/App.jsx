@@ -4,8 +4,7 @@ import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
-import Posts from "./pages/Posts";
-import UseEffectTimer from "./pages/UseEffectTimer";
+import AllPosts from "./pages/AllPosts";
 
 function App() {
   return (
@@ -14,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/posts" element={<Posts />} />
+        <Route path="/posts" element={<AllPosts />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

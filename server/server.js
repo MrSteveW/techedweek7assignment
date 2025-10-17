@@ -32,7 +32,8 @@ app.get("/posts", async (req, res) => {
 // POST NEW POST
 app.post("/posts", async (req, res) => {
   try {
-    const { username, title, content, reaction, tags } = req.body;
+    const { username, title, content, tags } = req.body;
+    const reaction = req.body.reaction ?? 0; // Use nullish coalescing
 
     // Save most data to posts
     const postResult = await db.query(
