@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function FormPost({ formSubmitted, setFormSubmitted }) {
+export default function Form({ formSubmitted, setFormSubmitted }) {
   const [formData, setFormData] = useState({});
   const [tagField, setTagField] = useState([]);
 
