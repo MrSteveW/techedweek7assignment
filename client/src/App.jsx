@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import AllPosts from "./pages/AllPosts";
+import Category from "./pages/Category";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/posts" element={<AllPosts />} />
+        <Route path="/category/:id" element={<Category />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

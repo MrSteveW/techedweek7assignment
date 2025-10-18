@@ -17,6 +17,30 @@ app.get("/", async (req, res) => {
   res.status(200).send("root_route");
 });
 
+// GET ALL TAGS
+app.get("/category", async (req, res) => {
+  const posts = await db.query(`SELECT * FROM tags ORDER BY id ASC`);
+  res.status(200).json(posts.rows);
+});
+
+// GET ALL POSTS WITH SPECIFIC TAG
+app.get("/category/:id", async (req, res) => {
+  const id = req.params.id;
+  const posts = await db.query(
+    `SELECT 
+    posts.*, 
+    tags.name AS category
+    FROM posts
+    JOIN posts_tags ON posts.id = posts_tags.post_id
+    JOIN tags ON tags.id = posts_tags.tag_id
+    WHERE tags.id = $1
+    ORDER BY posts.id DESC;
+     `,
+    [id]
+  );
+  res.status(200).json(posts.rows);
+});
+
 // GET ALL POSTS
 app.get("/posts", async (req, res) => {
   const posts = await db.query(
@@ -24,7 +48,9 @@ app.get("/posts", async (req, res) => {
      FROM posts
      JOIN posts_tags ON posts.id = posts_tags.post_id
      JOIN tags ON posts_tags.tag_id = tags.id
-     GROUP BY posts.id`
+     GROUP BY posts.id
+     ORDER BY id DESC
+     `
   );
   res.status(200).json(posts.rows);
 });
@@ -103,14 +129,13 @@ app.delete("/posts/:id", async (request, response) => {
   }
 });
 
-// PATCH WITH A LIKE
 app.patch("/posts/:id", async (request, response) => {
   try {
     const { id } = request.params;
-    const { likes } = request.body;
+    const { reaction } = request.body;
     const result = await db.query(
-      "UPDATE posts SET likes = $1 WHERE id = $2 RETURNING *",
-      [likes, id]
+      "UPDATE posts SET reaction = $1 WHERE id = $2 RETURNING *",
+      [reaction, id]
     );
     if (result.rows.length === 0) {
       return response.status(404).json({ error: "Post not found" });

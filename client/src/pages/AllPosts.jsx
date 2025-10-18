@@ -22,8 +22,6 @@ export default function AllPosts() {
 
   // Add reaction
   useEffect(() => {
-    if (!postReactionId) return; // Don't run if no post ID
-
     async function updateReaction() {
       try {
         const response = await fetch(

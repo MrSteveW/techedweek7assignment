@@ -1,4 +1,5 @@
 import "./poststyle.css";
+import { Flame } from "../components/Flame";
 
 export default function Posts({
   id,
@@ -19,10 +20,7 @@ export default function Posts({
   return (
     <div className="page-container">
       <div className="post-container">
-        <div className="post-username">
-          {username}
-          {id}
-        </div>
+        <div className="post-username">{username}</div>
         <div className="post-title">{title}</div>
         <div className="post-content">{content}</div>
         <div className="post-delete">DEL</div>
@@ -34,7 +32,7 @@ export default function Posts({
           className="post-reaction"
           onClick={() => handleReaction(id, reaction)}
         >
-          REACT {reaction}
+          <Flame /> {reaction}
         </div>
       </div>
     </div>
