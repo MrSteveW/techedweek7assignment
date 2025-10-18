@@ -114,7 +114,12 @@ export default function Form({ formSubmitted, setFormSubmitted }) {
           </div>
 
           <div>
-            <button type="submit">Submit</button>
+            <button
+              type="submit"
+              className="bg-slate-800 text-white p-2 cursor-pointer hover:bg-violet-600"
+            >
+              Submit
+            </button>
           </div>
         </form>
       </div>

@@ -25,7 +25,7 @@ export default function Home() {
         The forum for exercise, workouts and fitness
       </div>
       <div>
-        <div className="text-xl mb-6">Current hot topics</div>
+        <div className="text-xl mb-6">Check out our hot topics</div>
         <div className="cat-container mb-6">
           {tags.map((tag) => (
             <Link to={`category/${tag.id}`} key={tag.id}>

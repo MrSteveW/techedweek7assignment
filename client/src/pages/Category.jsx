@@ -26,21 +26,27 @@ export default function Category() {
 
   return (
     <div>
-      <div>You are looking at page {categoryName} </div>
-      <div className="border-1">
+      <div className="text-xl mb-6 text-center text-white">{categoryName} </div>
+      <div>
         {categoryPosts ? (
-          categoryPosts.map((post) => (
-            <Post
-              key={post.id}
-              id={post.id}
-              username={post.username}
-              title={post.title}
-              content={post.content}
-              reaction={post.reaction}
-              created_at={post.created_at}
-              tags={post.tag}
-            />
-          ))
+          categoryPosts.length > 0 ? (
+            categoryPosts.map((post) => (
+              <Post
+                key={post.id}
+                id={post.id}
+                username={post.username}
+                title={post.title}
+                content={post.content}
+                reaction={post.reaction}
+                created_at={post.created_at}
+                tags={post.tag}
+              />
+            ))
+          ) : (
+            <div className="text-xl mb-6 text-center text-white">
+              No posts found for this category
+            </div>
+          )
         ) : (
           <div>Loading posts...</div>
         )}

@@ -34,7 +34,14 @@ export default function Posts({
         <div className="post-date">
           {new Date(created_at).toLocaleDateString("en-GB")}
         </div>
-        <div className="post-tags">{tags}</div>
+        <div className="post-tags">
+          {tags &&
+            tags.map((tag, index) => (
+              <div key={index} className="post-each-tag">
+                {tag}
+              </div>
+            ))}
+        </div>
         <div
           className="post-reaction"
           onClick={() => handleReaction(id, reaction)}

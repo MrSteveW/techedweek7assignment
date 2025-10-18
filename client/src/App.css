@@ -1,11 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Lexend&display=swap");
+
+:root {
+  --font-allerta: "Allerta Stencil", sans-serif;
+  --font-baskerville: "Libre Baskerville", sans-serif;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   background-image: url("../assets/bg1.webp");
+  background-attachment: fixed;
   background-size: cover;
   scrollbar-color: darkgray black;
+  font-family: "Lexend";
+}
+
+nav {
+  position: sticky;
+  top: 0;
 }
 
 .home-container {
@@ -18,13 +32,14 @@ body {
 .cat-container {
   display: flex;
   flex-flow: row wrap;
+  margin: 40px;
 }
 .cat-link {
   background-color: darkslategrey;
   color: white;
   border: 1px black solid;
   border-radius: 5px;
-  margin: 5px;
+  margin: 8px;
   padding: 5px;
 }
 

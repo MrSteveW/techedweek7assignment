@@ -4,12 +4,15 @@
 }
 
 .post-container {
+  background-color: rgba(255, 255, 255, 0.9);
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
-  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-rows: 1fr 2fr 1fr;
   border: 1px solid black;
+  border-radius: 15px;
   width: 50%;
   margin: 5px;
+  padding: 2px;
 }
 
 .post-username {
@@ -22,6 +25,7 @@
   grid-column: 1 / 2;
   grid-row: 3 / 4;
   text-align: center;
+  color: darkslategray;
 }
 
 .post-title {
@@ -32,6 +36,9 @@
 .post-content {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
+  background-color: lightgray;
+  border-radius: 5px;
+  padding: 7px;
 }
 
 .post-delete {
@@ -43,6 +50,13 @@
   grid-column: 2 / 3;
   grid-row: 3 / 4;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-each-tag {
+  margin-right: 10px;
 }
 
 .post-reaction {

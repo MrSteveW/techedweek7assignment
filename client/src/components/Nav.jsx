@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 export default function Nav() {
   return (
-    <header className="bg-[#172323] text-white text-xl flex justify-between p-3 ">
+    <nav className="bg-[#172323] text-white text-xl flex justify-between p-3 [font-family:var(--font-allerta)]">
       <div>
         <Link to="/" className="mr-4">
           Endurance
@@ -19,6 +19,6 @@ export default function Nav() {
           About
         </Link>
       </div>
-    </header>
+    </nav>
   );
 }
