@@ -1,5 +1,6 @@
 import "./poststyle.css";
 import { Flame } from "../components/Flame";
+import { Trash } from "../components/Trash";
 
 export default function Posts({
   id,
@@ -11,10 +12,14 @@ export default function Posts({
   tags,
   setReactionId,
   setCurrentReaction,
+  setDeleteId,
 }) {
   function handleReaction(id, reaction) {
     setReactionId(id);
     setCurrentReaction(reaction);
+  }
+  function handleDelete(id) {
+    setDeleteId(id);
   }
 
   return (
@@ -23,7 +28,9 @@ export default function Posts({
         <div className="post-username">{username}</div>
         <div className="post-title">{title}</div>
         <div className="post-content">{content}</div>
-        <div className="post-delete">DEL</div>
+        <div className="post-delete" onClick={() => handleDelete(id)}>
+          <Trash />
+        </div>
         <div className="post-date">
           {new Date(created_at).toLocaleDateString("en-GB")}
         </div>

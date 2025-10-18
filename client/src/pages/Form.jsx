@@ -32,7 +32,7 @@ export default function Form({ formSubmitted, setFormSubmitted }) {
 
   return (
     <div className="w-full flex flex-col items-center p-4">
-      <div className="border-1 w-1/2">
+      <div className="border-1 w-1/2 bg-white text-center rounded-3xl p-2">
         <form onSubmit={handleSubmit} className="">
           <label htmlFor="username" className="block text-sm font-medium">
             Username
@@ -70,19 +70,6 @@ export default function Form({ formSubmitted, setFormSubmitted }) {
           <label htmlFor="tags" className="block text-sm font-medium">
             Tags
           </label>
-          <div className="flex flex-row justify-evenly">
-            <div onClick={() => setTag("running")}>running</div>
-            <div onClick={() => setTag("cycling")}>cycling</div>
-            <div onClick={() => setTag("gym")}>gym</div>
-            <div onClick={() => setTag("yoga")}>yoga</div>
-            <div onClick={() => setTag("swimming")}>swimming</div>
-            <div onClick={() => setTag("nutrition")}>nutrition</div>
-            <div onClick={() => setTag("home works")}>home workouts</div>
-            <div onClick={() => setTag("weight loss")}>weight loss</div>
-            <div onClick={() => setTag("equipment")}>equipment</div>
-            <div onClick={() => setTag("injury")}>injury</div>
-            <div onClick={() => setTag("mental health")}>mental health</div>
-          </div>
           <input
             name="tags"
             type="text"
@@ -90,6 +77,42 @@ export default function Form({ formSubmitted, setFormSubmitted }) {
             value={tagField.join(" ") || ""}
             disabled
           />
+          <div className="flex flex-wrap justify-center ml-5 mr-5">
+            <div onClick={() => setTag("running")} className="form-tag">
+              running
+            </div>
+            <div onClick={() => setTag("cycling")} className="form-tag">
+              cycling
+            </div>
+            <div onClick={() => setTag("gym")} className="form-tag">
+              gym
+            </div>
+            <div onClick={() => setTag("yoga")} className="form-tag">
+              yoga
+            </div>
+            <div onClick={() => setTag("swimming")} className="form-tag">
+              swimming
+            </div>
+            <div onClick={() => setTag("nutrition")} className="form-tag">
+              nutrition
+            </div>
+            <div onClick={() => setTag("home works")} className="form-tag">
+              home workouts
+            </div>
+            <div onClick={() => setTag("weight loss")} className="form-tag">
+              weight loss
+            </div>
+            <div onClick={() => setTag("equipment")} className="form-tag">
+              equipment
+            </div>
+            <div onClick={() => setTag("injury")} className="form-tag">
+              injury
+            </div>
+            <div onClick={() => setTag("mental health")} className="form-tag">
+              mental health
+            </div>
+          </div>
+
           <div>
             <button type="submit">Submit</button>
           </div>

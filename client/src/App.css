@@ -1,3 +1,49 @@
 * {
   box-sizing: border-box;
 }
+
+body {
+  background-image: url("../assets/bg1.webp");
+  background-size: cover;
+  scrollbar-color: darkgray black;
+}
+
+.home-container {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 2em;
+  margin: 2em;
+  border-radius: 1.5em;
+}
+
+.cat-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+.cat-link {
+  background-color: darkslategrey;
+  color: white;
+  border: 1px black solid;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.form-tag {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 4px;
+  margin: 3px;
+  font-size: 0.8em;
+  background-color: var(--color-violet-800);
+  color: white;
+}
+
+.cat-link:hover {
+  background-color: var(--color-violet-600);
+}
+
+.form-tag:hover {
+  background-color: darkslategrey;
+  cursor: pointer;
+  color: black;
+}

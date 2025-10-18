@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Form from "./Form";
 import Post from "./Post";
 import { useCount } from "./useCount";
+import "./poststyle.css";
 
 export default function AllPosts() {
   const count = useCount();
@@ -9,6 +10,7 @@ export default function AllPosts() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [postReactionId, setReactionId] = useState();
   const [currentReaction, setCurrentReaction] = useState();
+  const [deleteId, setDeleteId] = useState();
 
   // Fetch data
   useEffect(() => {
@@ -19,6 +21,37 @@ export default function AllPosts() {
     }
     fetchData();
   }, [count, formSubmitted]);
+
+  useEffect(() => {
+    async function deletePost() {
+      // Confirm inline — no variable needed
+      if (!window.confirm("Are you sure you wish to delete post?")) return;
+
+      try {
+        const response = await fetch(
+          `http://localhost:3000/posts/${deleteId}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        const result = await response.json();
+
+        const postsResponse = await fetch("http://localhost:3000/posts");
+        const postsData = await postsResponse.json();
+        setPosts(postsData);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    if (deleteId) {
+      deletePost();
+    }
+  }, [deleteId]);
 
   // Add reaction
   useEffect(() => {
@@ -51,11 +84,11 @@ export default function AllPosts() {
   }
 
   return (
-    <div className="w-full h-140 bg-amber-200">
+    <div className="w-full h-140">
       <Form formSubmitted={formSubmitted} setFormSubmitted={setFormSubmitted} />
 
       {/* MAPPING THROUGH POSTS */}
-      <div className="border-1">
+      <div className="posts-container">
         Posts
         {posts.map((post) => (
           <Post
@@ -69,6 +102,7 @@ export default function AllPosts() {
             tags={post.tag}
             setReactionId={setReactionId}
             setCurrentReaction={setCurrentReaction}
+            setDeleteId={setDeleteId}
           />
         ))}
       </div>

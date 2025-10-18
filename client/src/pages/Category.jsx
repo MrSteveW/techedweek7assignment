@@ -28,7 +28,6 @@ export default function Category() {
     <div>
       <div>You are looking at page {categoryName} </div>
       <div className="border-1">
-        Posts
         {categoryPosts ? (
           categoryPosts.map((post) => (
             <Post
