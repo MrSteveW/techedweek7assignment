@@ -14,6 +14,8 @@ export default function Form({ formSubmitted, setFormSubmitted }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    console.log("Posting to:", `${import.meta.env.VITE_SERVER_CONN}/posts`);
+    console.log("Environment variable:", import.meta.env.VITE_SERVER_CONN);
     fetch(`${import.meta.env.VITE_SERVER_CONN}/posts`, {
       method: "POST",
       headers: {
