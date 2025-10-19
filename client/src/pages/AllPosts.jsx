@@ -28,7 +28,7 @@ export default function AllPosts() {
   // Fetch data
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("http://localhost:3000/posts");
+      const response = await fetch(`${import.meta.env.VITE_SERVER_CONN}/posts`);
       const data = await response.json();
       setPosts(data);
     }
@@ -42,7 +42,7 @@ export default function AllPosts() {
 
       try {
         const response = await fetch(
-          `http://localhost:3000/posts/${deleteId}`,
+          `${import.meta.env.VITE_SERVER_CONN}/posts/${deleteId}`,
           {
             method: "DELETE",
             headers: {
@@ -53,7 +53,9 @@ export default function AllPosts() {
 
         const result = await response.json();
 
-        const postsResponse = await fetch("http://localhost:3000/posts");
+        const postsResponse = await fetch(
+          `${import.meta.env.VITE_SERVER_CONN}/posts`
+        );
         const postsData = await postsResponse.json();
         setPosts(postsData);
       } catch (error) {
@@ -71,7 +73,7 @@ export default function AllPosts() {
     async function updateReaction() {
       try {
         const response = await fetch(
-          `http://localhost:3000/posts/${postReactionId}`,
+          `${import.meta.env.VITE_SERVER_CONN}/posts/${postReactionId}`,
           {
             method: "PATCH",
             headers: {
@@ -81,7 +83,9 @@ export default function AllPosts() {
           }
         );
         const result = await response.json();
-        const postsResponse = await fetch("http://localhost:3000/posts");
+        const postsResponse = await fetch(
+          `${import.meta.env.VITE_SERVER_CONN}/posts`
+        );
         const postsData = await postsResponse.json();
         setPosts(postsData);
       } catch (error) {
