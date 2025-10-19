@@ -1,6 +1,6 @@
 import "./poststyle.css";
-import { Flame } from "../components/Flame";
-import { Trash } from "../components/Trash";
+import { Flame } from "./Flame";
+import { Trash } from "./Trash";
 
 export default function Posts({
   id,

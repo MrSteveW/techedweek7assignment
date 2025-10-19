@@ -1,6 +1,6 @@
 import { useParams, Outlet } from "react-router";
 import { useEffect, useState } from "react";
-import Post from "./Post";
+import Post from "../components/Post";
 
 export default function Category() {
   const params = useParams(); //grabs the paramater from the URL

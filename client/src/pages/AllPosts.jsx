@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import Form from "./Form";
-import Post from "./Post";
-import { useCount } from "./useCount";
-import "./poststyle.css";
+import { useSearchParams } from "react-router";
+import Form from "../components/Form";
+import Post from "../components/Post";
+import { useCount } from "../components/useCount";
+import "../components/poststyle.css";
 
 export default function AllPosts() {
   const count = useCount();
@@ -11,6 +12,18 @@ export default function AllPosts() {
   const [postReactionId, setReactionId] = useState();
   const [currentReaction, setCurrentReaction] = useState();
   const [deleteId, setDeleteId] = useState();
+  const [params, setSearchParams] = useSearchParams();
+
+  // Create sorted posts only when posts is available
+  let sortedPosts = posts ? [...posts] : [];
+
+  if (posts && params.get("sortBy") === "recent") {
+    sortedPosts = sortedPosts.sort(
+      (a, b) => new Date(b.created_at) - new Date(a.created_at)
+    );
+  } else if (posts && params.get("sortBy") === "reactions") {
+    sortedPosts = sortedPosts.sort((a, b) => b.reaction - a.reaction);
+  }
 
   // Fetch data
   useEffect(() => {
@@ -88,9 +101,18 @@ export default function AllPosts() {
       <Form formSubmitted={formSubmitted} setFormSubmitted={setFormSubmitted} />
 
       {/* MAPPING THROUGH POSTS */}
+      <div className="w-1/3 text-center">
+        <select
+          value={params.get("sortBy") || ""}
+          onChange={(event) => setSearchParams({ sortBy: event.target.value })}
+        >
+          <option value="recent">Most recent</option>
+          <option value="reactions">Most reactions</option>
+        </select>
+      </div>
+
       <div className="posts-container">
-        Posts
-        {posts.map((post) => (
+        {sortedPosts.map((post) => (
           <Post
             key={post.id}
             id={post.id}
