@@ -14,7 +14,7 @@ export default function Form({ formSubmitted, setFormSubmitted }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch(`http://localhost:3000/posts`, {
+    fetch(`${import.meta.env.VITE_SERVER_CONN}/posts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
