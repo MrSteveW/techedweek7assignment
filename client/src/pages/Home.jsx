@@ -1,6 +1,5 @@
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
-import Category from "../pages/Category";
 
 export default function Home() {
   const [tags, setTags] = useState(null);
@@ -8,7 +7,9 @@ export default function Home() {
   // Fetch data
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("http://localhost:3000/category");
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_CONN}/category`
+      );
       const data = await response.json();
       setTags(data);
     }

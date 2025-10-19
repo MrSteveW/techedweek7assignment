@@ -11,7 +11,7 @@ export default function Category() {
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        `http://localhost:3000/category/${params.id}`
+        `${import.meta.env.VITE_SERVER_CONN}/${params.id}`
       );
       const data = await response.json();
       setCategoryPosts(data);
