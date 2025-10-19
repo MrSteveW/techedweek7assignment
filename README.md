@@ -31,3 +31,4 @@
 
 Photo by Ambitious Studio\* | Rick Barrett on Unsplash  
 Lots of help from Sam on to get the form reseting and polling database, thank you.
+Claude... I had problems with client-side routing on Render. I added a **\_redirects** folder and added `/* /index.html 200` and that seemed to solve it
